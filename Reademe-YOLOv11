@@ -1,0 +1,6 @@
+YOLOv11_BiFPN_SIou
+This repository contains the implementation of the paper titled "Deep learning to detect stone burial sites from drone
+image in the southern foothills of the Tianshan Mountains in Xinjiang, China". The project integrated YOLOv11 with a
+Bidirectional Feature Pyramid Network (BiFPN) and improved the loss function to enhance the accuracy of detecting
+stone burial sites in drone imagery.
+
