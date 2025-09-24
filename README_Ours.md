@@ -29,17 +29,23 @@ facilitating archaeological discoveries and the establishment of inventories in 
 
 ### Steps
 
-1. **Clone the repository**:
+1. **Download the stone burial site deep learning dataset **:
+   ```sh
+   Dataset download link: https://zenodo.org/records/17192944
+   #Download the stone burial site deep learning dataset (datasets.zip), extract it, and save it to the YOLOv11_BiFPN_SIou folder downloaded in Step 2.
+
+
+2. **Clone the repository**:
    ```sh
    git clone https://github.com/Changping-Li/YOLOv8_BiFPN_SIou.git
    cd YOLOv8_BiFPN_SIou
    ```
 
-2. **Setting up a PyTorch environment**:
+3. **Setting up a PyTorch environment**:
    ```sh
      conda create -n YOLOv11 python=3.9
    ```
-3. **Activate the created environment**:
+4. **Activate the created environment**:
   ```sh
    conda activate YOLOv11
   ```
