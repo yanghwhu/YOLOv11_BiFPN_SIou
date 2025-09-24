@@ -7,32 +7,16 @@ Bidirectional Feature Pyramid Network (BiFPN) and improved the loss function to 
 stone burial sites in drone imagery.
 
 ## Overview
-
 The stone burial site (SBS), as important historical relics, a thorough understanding of their spatial distribution and 
 quantity is important for promoting regional civilization cognition. Remote sensing techniques and artificial Intelligence 
 methods can greatly facilitate rapid surveys and inventories of archaeological sites. This study applied drone imagery 
 and a deep convolutional neural network-based object detection model to quickly and accurately identify SBS, thereby 
-facilitating archaeological discoveries and the establishment of inventories in the feild. 
+facilitating archaeological discoveries and the establishment of inventories in the field. 
 
 ## Features
 
-- **YOLOv11_BiFPN**: An enhanced version of YOLOv11 with bidirectional feature pyramid networks (BiFPN) and an improved 
+- **YOLOv11_BiFPN_SIou**: An enhanced version of YOLOv11 with bidirectional feature pyramid networks (BiFPN) and an improved 
                      loss function for multi-scale feature fusion.
-
-
-## Results
-
-Our proposed YOLOv8_BiFPN model achieves:
-- Average Precision (AP): 90.2%
-- Mean Average Precision (mAP@.50): 0.896
-
-Here is the comparision with other networks:
-
-![Comparision Image](img/comparision.png)
-
-Here is the detection result of our YOLOv8-BiFPN:
-
-![Detection Result Image](img/detect_result.png)
 
 ## Installation
 
@@ -47,32 +31,50 @@ Here is the detection result of our YOLOv8-BiFPN:
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/Changping-Li/YOLOv8_BiFPN.git
+   git clone https://github.com/Changping-Li/YOLOv8_BiFPN_SIou.git
    cd YOLOv8_BiFPN_SIou
    ```
 
-2. **Install dependencies**:
+2. **Setting up a PyTorch environment**:
    ```sh
-   pip install -r requirements.txt
+     conda create -n YOLOv11 python=3.9
    ```
-
-3. **Prepare the dataset**:
-   Download and place the FOTL_Drone dataset in the `ultralytics/yolo/data/` directory.
+3. **Activate the created environment**:
+  ```sh
+   conda activate YOLOv11
+  ```
+4. **Install dependencies**:
+ ```sh
+    pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+    # The CUDA version must be compatible with your current device.
+  ```
+  
+5. **Install YOLOv11**:
+  ```sh
+    pip install ultralytics
+  ```
 
 ## Usage
 
 ### Training
 
 To train the YOLOv11_BiFPN_SIou model:
-```sh
-python ultralytics/yolo/v8/detect/train.py --config ultralytics/models/v8/yolov8-BiFPN-final.yaml
-```
+ ```sh
+  python mytrain.py --batch 32
+  #When GPU memory is insufficient, one may attempt to reduce the batch size, for example, --batch 8.
+  #As shown in the figure below, should an error message such as ‘No module named “tqdm”’ appear, proceed with installation using the command ‘pip install “xxxx”’.
+  #![img_1.png](img_1.png)
+  #As shown in the figure below, the model will begin training and the process will take several hours.
+  #The accuracy evaluation metrics for the model training process will be saved to the path:runs/train/exp
+  ![img_1.png](img_1.png)
+ ```
 
 ### Evaluation
 
 To evaluate the model:
 ```sh
-python ultralytics/yolo/v11/detect/predict.py 
+  python mypre.py
+  #The prediction results can be viewed using image viewing software.
 ```
 
 ## File Structure
@@ -87,11 +89,11 @@ The core code directory of YOLOv11 contains all the code that implements the mod
 
     Stores configuration files that define the model's structure, training parameters, etc.
 
-2.1 ultralytics/yolo/cfg/init.py
+2.1 ultralytics/cfg/init.py
     
     The initialization file of the Python package, used to mark the current directory as part of the Python package. This allows the package's modules to be referenced by external code.
 
-2.2 ultralytics/yolo/cfg/default.yaml
+2.2 ultralytics/cfg/default.yaml
 
     This is a YAML configuration file containing the default configuration settings for YOLOv8. These settings include training parameters, model options, data processing methods, etc.
 
@@ -99,7 +101,7 @@ The core code directory of YOLOv11 contains all the code that implements the mod
     
     This folder contains configuration files related to different datasets. These configuration files define how to load and preprocess datasets, the structure and attributes of the datasets, etc.
 
-### 4 ultralytics/yolo/data
+### 4 ultralytics/data
     
     Contains scripts and files related to data processing, such as dataset configuration files or data preprocessing code. This is crucial for model training and testing.
 
@@ -147,90 +149,90 @@ The core code directory of YOLOv11 contains all the code that implements the mod
         
     Contains code related to object tracking. This supports tracking detected objects in videos or real-time streams.
 
-### 9 ultralytics/yolo/utils
+### 9 ultralytics/utils
     
     Contains various utilities and helper functions, such as image processing, performance metric calculations, etc.
 
-9.1 ultralytics/yolo/utils/callbacks
+9.1 ultralytics/utils/callbacks
     
     Contains callback functions used during the training process. These functions are called at specific points during model training to log information such as training loss and learning rate.
 
-9.2 ultralytics/yolo/utils/init.py
+9.2 ultralytics/utils/init.py
         
     The initialization file of the utils directory, marking it as a Python module.
 
-9.3 ultralytics/yolo/utils/autobatch.py
+9.3 ultralytics/utils/autobatch.py
         
     Contains functionality for automatic batch processing, optimizing efficiency when handling large amounts of data.
 
-9.4 ultralytics/yolo/utils/benchmarks.py
+9.4 ultralytics/utils/benchmarks.py
         
     Contains functions for performance benchmarking, used to evaluate the model's speed and efficiency.
 
-9.5 ultralytics/yolo/utils/checks.py
+9.5 ultralytics/utils/checks.py
         
     Provides functions for checking and validating data or model status.
 
-9.6 ultralytics/yolo/utils/dist.py
+9.6 ultralytics/utils/dist.py
         
     Contains functionality related to distributed training, such as solving a bug in Python argparse during Distributed Data Parallel (DDP) training.
 
-9.7 ultralytics/yolo/utils/downloads.py
+9.7 ultralytics/utils/downloads.py
         
     Contains functions related to downloading, such as downloading pre-trained models or other resources.
 
-9.8 ultralytics/yolo/utils/errors.py
+9.8 ultralytics/utils/errors.py
         
     Defines custom errors and exception handling functions.
 
-9.9 ultralytics/yolo/utils/files.py
+9.9 ultralytics/utils/files.py
         
     Contains functions related to file operations, such as reading and writing files.
 
-9.10 ultralytics/yolo/utils/instance.py
+9.10 ultralytics/utils/instance.py
         
     Contains functions related to instances (objects), used for handling operations on a single model instance.
 
-9.11 ultralytics/yolo/utils/loss.py
+9.11 ultralytics/utils/loss.py
         
     Contains definitions and implementations of loss functions, which are crucial for the training process.
 
-9.12 ultralytics/yolo/utils/metrics.py
+9.12 ultralytics/utils/metrics.py
     
     Contains functions for calculating and reporting performance metrics.
 
-9.13 ultralytics/yolo/utils/ops.py
+9.13 ultralytics/utils/ops.py
         
     Contains various operations and functions.
 
-9.14 ultralytics/yolo/utils/patches.py
+9.14 ultralytics/utils/patches.py
         
     Contains code patches related to fixing or improving existing functionality.
 
-9.15 ultralytics/yolo/utils/plotting.py
+9.15 ultralytics/yutils/plotting.py
         
     Provides data visualization functions, such as plotting graphs.
 
-9.16 ultralytics/yolo/utils/tal.py
+9.16 ultralytics/utils/tal.py
         
     Contains tools and functions for specific application logic.
 
-9.17 ultralytics/yolo/utils/torch_utils.py
+9.17 ultralytics/utils/torch_utils.py
         
     Contains helper functions related to the PyTorch framework.
 
-9.18 ultralytics/yolo/utils/triton.py
+9.18 ultralytics/utils/triton.py
         
     Contains functionality for integrating with NVIDIA Triton inference server.
 
-9.19 ultralytics/yolo/utils/tuner.py
+9.19 ultralytics/utils/tuner.py
         
     Provides functionality for model tuning and hyperparameter search.
 
 ### 10 ultralytics/init.py
     The initialization file of the Python package, marking the current directory as part of the Python package.
 
-These directories and files collectively form the foundation of YOLOv8-BiFPN, from data processing and model configuration to the actual training and inference engine, as well as utility tools and advanced functionalities. Each component plays a crucial role in the overall functionality and performance of the framework.
+These directories and files collectively form the foundation of YOLOv11-BiFPN_SIou, from data processing and model configuration to the actual training and inference engine, as well as utility tools and advanced functionalities. Each component plays a crucial role in the overall functionality and performance of the framework.
 
 
 ## Methodology
@@ -248,18 +250,16 @@ In the task of using drones to detect foreign objects on transmission lines, the
 - **Classification Loss**: Binary Cross-Entropy (BCE) is employed as the classification loss.
 - **Regression Loss**: The regression branch employs Distribution Focal Loss (DFL) and CIoU Loss for bounding box optimization.
 
-Here is the architecture of our YOLOv8-BiFPN:
+Here is the architecture of our YOLOv11-BiFPN_SIou:
 
-![Architecture Image](img/architecture.png)
 
 ## Dataset
 
-**FOTL_Drone**:
-- A dataset of foreign objects on transmission lines from drone perspective.
-- Comprises a total of 1,495 annotated images, capturing six types of foreign objects (nest, kite, balloon, fire, person, monkey).
-- Images sourced from Google, Bing, Baidu, Sogou, YouTube, Bilibili, and drone inspections.
+**SBS**:
+- A dataset of stone burial sites.
+- Comprises a total of 6980 annotated images
 - Annotations saved in XML format following the PASCAL VOC standard, supporting YOLO format.
-- Split into training (1,196 images) and testing (299 images) sets.
+- Split into training (5590 images) and testing (1390 images) sets.
 
 Here is the example image of our dataset:
 
@@ -269,6 +269,3 @@ Here is the example image of our dataset:
 
 We welcome contributions from the community. Please feel free to submit pull requests or open issues for any bugs or feature requests.
 
-## Acknowledgments
-
-This work is supported by various grants and institutions, including the Basic Research Programs of Taicang, the Guangdong Key Laboratory of Intelligent Information Processing, and the National Natural Science Foundation of China.
