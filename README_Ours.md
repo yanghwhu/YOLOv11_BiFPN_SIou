@@ -54,18 +54,18 @@ facilitating archaeological discoveries and the establishment of inventories in 
   ```sh
    conda activate YOLOv11
   ```
-4. **Install dependencies**:
+6. **Install dependencies**:
  ```sh
     pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu128
     # The CUDA version must be compatible with your current device.
   ```
   
-5. **Install YOLOv11**:
+7. **Install YOLOv11**:
     ```sh
     pip install ultralytics
   ```
 
-6. **Go to the code folder path**:
+8. **Go to the code folder path**:
    cd YOLOv11_BiFPN_SIou-main
  
 
