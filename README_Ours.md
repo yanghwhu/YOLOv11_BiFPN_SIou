@@ -58,6 +58,8 @@ facilitating archaeological discoveries and the establishment of inventories in 
  ```sh
     pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu128
     # The CUDA version must be compatible with your current device.
+<img width="865" height="443" alt="70a6581d57170312eff843a29cfd40a5" src="https://github.com/user-attachments/assets/814c4867-d331-485f-9d11-2bf6fa1df3a7" />
+
   ```
   
 7. **Install YOLOv11**:
