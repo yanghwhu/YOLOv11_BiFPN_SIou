@@ -68,7 +68,7 @@ facilitating archaeological discoveries and the establishment of inventories in 
   ```
 
 8. **Go to the code folder path**:
-   cd YOLOv11_BiFPN_SIou-main\YOLOv11_BiFPN_SIou-main
+   cd YOLOv11_BiFPN_SIou-main/YOLOv11_BiFPN_SIou-main
  
 
 ## Usage
