@@ -32,20 +32,25 @@ facilitating archaeological discoveries and the establishment of inventories in 
 1. **Download the stone burial site deep learning dataset **:
    ```sh
    Dataset download link: https://zenodo.org/records/17192944
-   #Download the stone burial site deep learning dataset (datasets.zip), extract it, and save it to the YOLOv11_BiFPN_SIou folder downloaded in Step 2.
+   #Download the stone burial site deep learning dataset (datasets.zip), extract it, and save it to the YOLOv11_BiFPN_SIou folder downloaded in Step 2. Note that the datasets folder directly contains images and 
+   labels.
 
 
 2. **Clone the repository**:
-   ```sh
+  ```sh
    git clone https://github.com/Changping-Li/YOLOv8_BiFPN_SIou.git
-   cd YOLOv8_BiFPN_SIou
+   ```
+ 
+3. Install Anaconda3
+   ```sh
+   Download link: https://repo.anaconda.com/miniconda/  (Recommended download: Miniconda3-py39_24.9.2-0-Windows-x86_64, During installation, you must tick the box for ‘Add Anaconda to my PATH environment variable’.)
    ```
 
-3. **Setting up a PyTorch environment**:
+4. **Setting up a PyTorch environment**:
    ```sh
      conda create -n YOLOv11 python=3.9
    ```
-4. **Activate the created environment**:
+5. **Activate the created environment**:
   ```sh
    conda activate YOLOv11
   ```
@@ -56,9 +61,13 @@ facilitating archaeological discoveries and the establishment of inventories in 
   ```
   
 5. **Install YOLOv11**:
-  ```sh
+    ```sh
     pip install ultralytics
   ```
+
+6. **Go to the code folder path**:
+   cd YOLOv11_BiFPN_SIou-main
+ 
 
 ## Usage
 
