@@ -9,7 +9,6 @@ def parse_opt():
     parser.add_argument('--workers', type=int, default=4, help='number of workers')
     parser.add_argument('--device', type=str, default='0', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--resume', action='store_true', help='resume training')
-    # 可以添加其他需要的参数
     opt = parser.parse_args()
     return opt
 
@@ -28,7 +27,7 @@ if __name__ == '__main__':
                 optimizer='SGD',
                 close_mosaic=10,
                 resume=opt.resume,
-                project='run/train',
+                project='runs/train',
                 name='exp',
                 single_cls=False,
                 cache=False,
